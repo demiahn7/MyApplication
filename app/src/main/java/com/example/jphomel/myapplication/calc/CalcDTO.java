@@ -1,4 +1,4 @@
-package com.example.jphomel.myapplication;
+package com.example.jphomel.myapplication.calc;
 
 /**
  * Created by jpHomeL on 2016-09-24.

@@ -1,4 +1,4 @@
-package com.example.jphomel.myapplication;
+package com.example.jphomel.myapplication.calc;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.jphomel.myapplication.R;
 
 public class CalcActivity extends AppCompatActivity implements View.OnClickListener {
     EditText et_num_1, et_num_2;
@@ -21,7 +24,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calc);
+        setContentView(R.layout.activity_calc); //View 설정 of MVC
 
         et_num_1 = (EditText) findViewById(R.id.et_num_1);  //R --> res 폴더를 뜻함.
         et_num_2 = (EditText) findViewById(R.id.et_num_2);
@@ -43,35 +46,47 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        int num1 = Integer.parseInt(et_num_1.getText().toString());
-        int num2 = Integer.parseInt(et_num_2.getText().toString());
+        String s_et_num_1 = String.valueOf(et_num_1.getText());
+        String s_et_num_2 = String.valueOf(et_num_2.getText());
+
+        if (null == s_et_num_1 || "".equals(s_et_num_1.trim())) return;
+        if (null == s_et_num_2 || "".equals(s_et_num_2.trim())) return;
+
+        int num1 = Integer.parseInt(s_et_num_1);
+        int num2 = Integer.parseInt(s_et_num_2);
 
         //은닉화
         vo.setNum1(num1);
-        vo.setNum1(num2);
+        vo.setNum2(num2);
 
-        //TODO
         //algorithm
         switch (v.getId()) {
-            case R.id.bt_1 :
+            case R.id.bt_1:
                 //result = num1 + num2;
                 result = service.plus(vo).getResult();
                 break;
-            case R.id.bt_2 :
+            case R.id.bt_2:
                 //result = num1 - num2;
+                result = service.minus(vo).getResult();
                 break;
-            case R.id.bt_3 :
+            case R.id.bt_3:
                 //result = num1 * num2;
+                result = service.multi(vo).getResult();
                 break;
-            case R.id.bt_4 :
+            case R.id.bt_4:
                 //result = num1 / num2;
+                result = service.divide(vo).getResult();
                 break;
-            case R.id.bt_5 :
+            case R.id.bt_5:
                 //result = num1 % num2;
+                result = service.remainder(vo).getResult();
                 break;
-            case R.id.bt_6 :
-                tv_1.setText("결과확인 : "+result);
+            case R.id.bt_6:
+                tv_1.setText("결과확인 : " + result);
                 break;
         }
+
+        //Toast message --> script의 alert과 유사
+        Toast.makeText(getApplicationContext(), "버튼 클릭~", Toast.LENGTH_SHORT).show();
     }
 }
