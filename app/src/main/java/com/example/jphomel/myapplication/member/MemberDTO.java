@@ -4,6 +4,17 @@ package com.example.jphomel.myapplication.member;
  * Created by jpHomeL on 2016-10-01.
  */
 
+/* in SQLite
+ create table if not exists member(
+      id          text    primary key,
+      pw          text,
+      name        text,
+      addr        text,
+      phone       text,
+      email       text,
+      profileImg  text
+ );
+ */
 public class MemberDTO {
     private String id, pw, name, addr, phone, email, profileImg;
     private String msg;

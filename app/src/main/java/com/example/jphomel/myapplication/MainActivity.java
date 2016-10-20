@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.jphomel.myapplication.calc.CalcActivity;
 import com.example.jphomel.myapplication.member.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,16 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bt_calc :
                 //Intent는 메시지 객체이다.
-                //Intent intent = new Intent(this.getApplicationContext(), CalcActivity.class);
-                //this.startActivity(intent);
-                this.startActivity(new Intent(MainActivity.this, LoginActivity.class));  //MainActivity 에서 MemberActivity 로 이동.
-
-                //Toast message --> script의 alert과 유사
-                Toast.makeText(this.getApplicationContext(), "MainActivity 에서 LoginActivity 로 이동~~", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(this.getApplicationContext(), CalcActivity.class);
+                this.startActivity(intent);
                 break;
             case R.id.bt_contents :
-
+                this.startActivity(new Intent(MainActivity.this, LoginActivity.class));  //MainActivity 에서 MemberActivity 로 이동.
+                //Toast message --> script의 alert과 유사
+                Toast.makeText(this.getApplicationContext(), "MainActivity 에서 LoginActivity 로 이동~~", Toast.LENGTH_SHORT).show();
                 break;
         }
 

@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(this.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    this.startActivity(new Intent(LoginActivity.this, com.example.jphomel.myapplication.member.ListActivity.class)); //리스트뷰 화면으로 이동
+
                     msg = "Welcome! "+rtnVO.getName()+"님";
                     Toast.makeText(this.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 }

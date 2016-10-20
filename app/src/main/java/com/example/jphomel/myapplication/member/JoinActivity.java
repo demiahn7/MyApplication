@@ -69,12 +69,12 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bt_reg :
                 String msg = "";
-                Retval retval = service.join(memberDTO);
+                Retval retval = service.regist(memberDTO);
                 if ("SUCCESS".equals(retval.getMessage())) {
                     msg = "회원가입완료..로그인 하십시오.";
 
                     //this --> context, class --> 실제 물리 메모리 램
-                    this.startActivity(new Intent(JoinActivity.this, LoginActivity.class)); //로그인 화면으로 이동
+                    this.startActivity(new Intent(JoinActivity.this, LoginActivity.class));     //로그인 화면으로 이동
                 }
                 else {
                     msg = "회원가입실패..재시도 하십시오.";
@@ -83,7 +83,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();   //this.getApplicationContext() 는 메서드 안에서만 실행가능
                 break;
             case R.id.bt_cancel :
-                this.startActivity(new Intent(JoinActivity.this, CalcActivity.class));  //계산기 화면으로 이동
+                this.startActivity(new Intent(JoinActivity.this, CalcActivity.class));          //계산기 화면으로 이동
                 break;
         }
     }

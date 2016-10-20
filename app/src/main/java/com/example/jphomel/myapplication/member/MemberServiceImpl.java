@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.example.jphomel.myapplication.util.Retval;
 
+import java.util.ArrayList;
+
 /**
  * Created by jpHomeL on 2016-10-01.
  */
@@ -17,8 +19,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Retval regist(MemberDTO params) {
+        return dao.insert(params);
+    }
+
+    @Override
     public MemberDTO login(MemberDTO params) {
-        MemberDTO memberVO = dao.select(params);
+        MemberDTO memberVO = dao.selectOne(params);
         if (null == memberVO || !params.getId().equals(memberVO.getId())) {
             memberVO.setMsg("NONE_ID");
         }
@@ -33,8 +40,28 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Retval join(MemberDTO params) {
-        Retval retval = dao.insert(params);
-        return retval;
+    public ArrayList<MemberDTO> selectList() {
+        return dao.selectList();
     }
+
+    @Override
+    public ArrayList<MemberDTO> selectList(MemberDTO params) {
+        return dao.selectList(params);
+    }
+
+    @Override
+    public int count() {
+        return dao.count();
+    }
+
+    @Override
+    public void update(MemberDTO params) {
+        dao.update(params);
+    }
+
+    @Override
+    public void unregist(MemberDTO params) {
+        dao.delete(params);
+    }
+
 }
